@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="card shadow-lg p-4 col-md-6 mx-auto">
+
+        <h3 class="text-center mb-4">🚗 Book Parking</h3>
+
+        <!-- ERROR -->
+        {% if error %}
+            <div class="alert alert-danger text-center">
+                {{ error }}
+            </div>
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <!-- Duration -->
+            <div class="mb-3">
+                <label class="form-label fw-bold">Duration (hours)</label>
+                <input type="number" name="duration" class="form-control" min="1" required>
+            </div>
+
+            <!-- Parking Lot -->
+            <div class="mb-3">
+                <label class="form-label fw-bold">Select Parking Lot</label>
+                <select name="parking_lot" class="form-select" required>
+                    <option value="">-- Select --</option>
+                    {% for lot in lots %}
+                        <option value="{{ lot.id }}">
+                            {{ lot.name }} (Available: {{ lot.available }})
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Slot Input -->
+            <div class="mb-3">
+                <label class="form-label fw-bold">Choose Slot</label>
+                <input type="number" name="slot_number" class="form-control" min="1" placeholder="Enter slot number" required>
+            </div>
+
+            <!-- Available Slots -->
+            {% if available_slots %}
+            <div class="alert alert-info">
+                <strong>Available Slots:</strong><br>
+                {{ available_slots|join:", " }}
+            </div>
+            {% endif %}
+
+            <button type="submit" class="btn btn-primary w-100">
+                Confirm Booking
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

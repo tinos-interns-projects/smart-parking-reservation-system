@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h2 class="fw-bold mb-4">📊 Admin Dashboard</h2>
+
+    <!-- STATS -->
+    <div class="row text-center">
+
+        <div class="col-md-4">
+            <div class="card bg-primary text-white p-3 shadow">
+                <h5>Total Bookings</h5>
+                <h2>{{ total_bookings }}</h2>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card bg-success text-white p-3 shadow">
+                <h5>Total Revenue</h5>
+                <h2>₹ {{ total_revenue }}</h2>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card bg-dark text-white p-3 shadow">
+                <h5>Total Users</h5>
+                <h2>{{ total_users }}</h2>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 📊 CHARTS -->
+    <div class="row mt-4">
+
+        <div class="col-md-6">
+            <div class="card p-3 shadow">
+                <h5>Booking Trends</h5>
+                <canvas id="bookingChart"></canvas>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card p-3 shadow">
+                <h5>Revenue Trends</h5>
+                <canvas id="revenueChart"></canvas>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 🚗 PARKING TABLE -->
+    <div class="card mt-4 p-3 shadow">
+        <h5>Parking Lot Status</h5>
+        <table class="table mt-3">
+            <tr>
+                <th>Name</th>
+                <th>Location</th>
+                <th>Total</th>
+                <th>Available</th>
+            </tr>
+            {% for lot in parking_data %}
+            <tr>
+                <td>{{ lot.name }}</td>
+                <td>{{ lot.location }}</td>
+                <td>{{ lot.total_slots }}</td>
+                <td>{{ lot.available }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+</div>
+
+<!-- ✅ CHART JS -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const dates = {{ dates|safe }};
+    const counts = {{ counts|safe }};
+    const revenue = {{ revenue|safe }};
+
+    console.log("DATES:", dates);
+    console.log("COUNTS:", counts);
+    console.log("REVENUE:", revenue);
+
+    const bookingCanvas = document.getElementById('bookingChart');
+    const revenueCanvas = document.getElementById('revenueChart');
+
+    if (bookingCanvas && revenueCanvas) {
+
+        new Chart(bookingCanvas, {
+            type: 'line',
+            data: {
+                labels: dates,
+                datasets: [{
+                    label: 'Bookings',
+                    data: counts,
+                    borderWidth: 2
+                }]
+            }
+        });
+
+        new Chart(revenueCanvas, {
+            type: 'bar',
+            data: {
+                labels: dates,
+                datasets: [{
+                    label: 'Revenue',
+                    data: revenue
+                }]
+            }
+        });
+
+    } else {
+        console.error("Canvas not found");
+    }
+
+});
+</script>
+
+{% endblock %}

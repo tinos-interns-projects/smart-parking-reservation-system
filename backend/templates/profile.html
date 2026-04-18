@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5 col-md-6">
+
+    <div class="card shadow p-4 text-center">
+
+        <h3 class="mb-4">👤 My Profile</h3>
+
+        <!-- Avatar -->
+        <img src="{{ profile.avatar.url }}" 
+             class="rounded-circle mb-3"
+             width="120" height="120"
+             style="object-fit: cover;">
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <!-- Username -->
+            <div class="mb-3">
+                <input type="text" value="{{ request.user.username }}" 
+                       class="form-control" disabled>
+            </div>
+
+            <!-- Email -->
+            <div class="mb-3">
+                <input type="email" name="email"
+                       value="{{ request.user.email }}"
+                       class="form-control">
+            </div>
+
+            <!-- Phone -->
+            <div class="mb-3">
+                <input type="text" name="phone"
+                       value="{{ profile.phone }}"
+                       class="form-control"
+                       placeholder="Phone">
+            </div>
+
+            <!-- Upload -->
+            <div class="mb-3">
+                <input type="file" name="avatar" class="form-control">
+            </div>
+
+            <button class="btn btn-primary w-100">
+                Update Profile
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}
