@@ -1,77 +1,90 @@
 # 🚗 Smart Parking Reservation System
 
-An AI-powered Smart Parking Reservation System built using Django REST Framework and React.js.  
-The system allows users to reserve parking slots, predict parking fees using Machine Learning, generate QR-based booking verification, and manage bookings in real time.
+An AI-powered Smart Parking Reservation System developed using Django REST Framework, React.js, and Machine Learning technologies to provide intelligent parking slot booking, parking fee prediction, QR-based booking verification, and smart parking management.
+
+The system is designed to improve parking efficiency, reduce congestion, and enhance user experience through predictive analytics and modern web technologies.
 
 ---
 
 # 📌 Features
 
-## 🔐 Authentication
+## 🔐 Authentication System
 - User Registration
-- User Login
-- Token-based Authentication
-- Secure API Integration
+- Secure User Login
+- Token-Based Authentication
+- Protected API Access
+- Session Management
 
 ---
 
-## 🚘 Parking Booking
-- Real-time Parking Slot Booking
-- Smart Slot Recommendation (AI)
+## 🚘 Smart Parking Booking
+- Real-Time Parking Slot Booking
 - Parking Duration Selection
 - Dynamic Slot Availability
-- Booking Confirmation
+- Booking Confirmation System
+- Slot Management
 
 ---
 
-## 🤖 AI-Based Features
-### 1. Parking Fee Prediction
-- Machine Learning model predicts parking fees
-- Uses parking lot + duration data
-- Built with Scikit-learn
+## 🤖 AI-Based Functionalities
 
-### 2. Smart Slot Recommendation
-- Suggests best available slot automatically
-- Based on:
-  - Availability
-  - Slot usage
-  - Parking load
+### 1️⃣ Parking Fee Prediction
+Machine Learning model predicts parking fees based on:
+- Parking duration
+- Parking lot selection
+- Historical parking data
 
----
-
-## 📷 QR Code System
-- QR Code generated after booking
-- Download QR option
-- Used for parking verification
+Technologies Used:
+- Scikit-learn
+- Pandas
+- Joblib
 
 ---
 
-## 📊 Dashboard
+### 2️⃣ Smart Slot Recommendation
+Automatically recommends the best available parking slot based on:
+- Slot availability
+- Parking load
+- Usage pattern
+- Optimization logic
+
+---
+
+## 📷 QR Code Booking Verification
+- QR Code generation after successful booking
+- Download QR functionality
+- Parking verification support
+- Booking validation system
+
+---
+
+## 📊 Dashboard & Analytics
 - Welcome user section
-- Total bookings
-- Total amount spent
-- Booking analytics
+- Total bookings overview
+- Total parking expenditure
 - Quick action cards
+- User activity insights
 
 ---
 
 ## 📜 Booking History
-- View all previous bookings
-- Booking details
-- Cancel booking option
-- QR preview
+- View previous bookings
+- Parking details history
+- Booking fee details
+- QR preview support
+- Booking cancellation feature
 
 ---
 
-## 👤 User Profile
-- Profile information
-- Email & phone update
-- Avatar upload support
-- Logout functionality
+## 👤 User Profile Management
+- View profile information
+- Update user details
+- Profile management
+- Account handling
 
 ---
 
-# 🛠️ Tech Stack
+# 🛠️ Technology Stack
 
 ## Frontend
 - React.js
@@ -80,14 +93,19 @@ The system allows users to reserve parking slots, predict parking fees using Mac
 - Tailwind CSS
 - Recharts
 
+---
+
 ## Backend
 - Django
 - Django REST Framework
-- SQLite
+- SQLite Database
 
-## AI / ML
+---
+
+## Machine Learning
 - Scikit-learn
 - Pandas
+- NumPy
 - Joblib
 
 ---
@@ -109,13 +127,14 @@ Smart-Parking-Reservation-System/
 │
 ├── requirements.txt
 ├── README.md
+└── .gitignore
 ```
 
 ---
 
-# ⚙️ Installation
+# ⚙️ Installation & Setup
 
-## 1️⃣ Clone Repository
+# 1️⃣ Clone Repository
 
 ```bash
 git clone <repository-url>
@@ -132,6 +151,8 @@ cd Smart-Parking-Reservation-System
 python -m venv venv
 ```
 
+---
+
 ## Activate Environment
 
 ### Windows
@@ -140,7 +161,7 @@ python -m venv venv
 venv\Scripts\activate
 ```
 
-### Linux/Mac
+### Linux / Mac
 
 ```bash
 source venv/bin/activate
@@ -156,7 +177,7 @@ pip install -r requirements.txt
 
 ---
 
-## Run Migrations
+## Run Database Migrations
 
 ```bash
 python manage.py makemigrations
@@ -171,8 +192,7 @@ python manage.py migrate
 python manage.py runserver
 ```
 
-Backend runs on:
-
+Backend Server:
 ```bash
 http://127.0.0.1:8000/
 ```
@@ -181,7 +201,7 @@ http://127.0.0.1:8000/
 
 # 💻 Frontend Setup
 
-## Navigate to Frontend
+## Navigate to Frontend Folder
 
 ```bash
 cd frontend
@@ -189,7 +209,7 @@ cd frontend
 
 ---
 
-## Install Packages
+## Install Frontend Packages
 
 ```bash
 npm install
@@ -197,14 +217,13 @@ npm install
 
 ---
 
-## Start Frontend
+## Start Frontend Server
 
 ```bash
 npm run dev
 ```
 
-Frontend runs on:
-
+Frontend Server:
 ```bash
 http://localhost:5173/
 ```
@@ -213,15 +232,15 @@ http://localhost:5173/
 
 # 🔗 API Endpoints
 
-## Authentication
+## Authentication APIs
 
-### Register
+### Register User
 
 ```http
 POST /api/register/
 ```
 
-### Login
+### Login User
 
 ```http
 POST /api/login/
@@ -229,21 +248,21 @@ POST /api/login/
 
 ---
 
-## Parking
+## Parking APIs
 
-### Predict Fee
+### Predict Parking Fee
 
 ```http
 POST /api/predict_fee/
 ```
 
-### Recommend Slot
+### Smart Slot Recommendation
 
 ```http
 GET /api/recommend_slot/
 ```
 
-### Book Parking
+### Book Parking Slot
 
 ```http
 POST /api/book/
@@ -263,14 +282,14 @@ DELETE /api/cancel-booking/<id>/
 
 ---
 
-# 🧠 Machine Learning
+# 🧠 Machine Learning Integration
 
-The project uses a trained Scikit-learn model for:
-
+The project integrates Machine Learning models for:
 - Parking fee prediction
 - Smart slot recommendation
+- Intelligent parking management
 
-Model files are loaded using:
+Models are loaded using:
 
 ```python
 joblib.load()
@@ -278,38 +297,30 @@ joblib.load()
 
 ---
 
-# 📸 Screenshots
-
-## Login Page
-Modern authentication UI with token-based login.
-
-## Dashboard
-Analytics cards with booking insights.
-
-## Booking Page
-AI-powered parking booking interface.
-
-## QR Verification
-Generated QR after successful booking.
-
----
-
-# 🚀 Future Improvements
-
+# 🚀 Future Enhancements
 - Live parking map integration
-- Real-time sensor tracking
+- Real-time parking sensor support
 - Online payment gateway
 - Admin analytics dashboard
-- Mobile app support
+- Mobile application integration
+- Notification system
+- Advanced predictive analytics
 
 ---
 
 # 👨‍💻 Developed By
 
-Mohammed Jaseel
+- Mohammed Jaseel TK
+- Adhil K
 
 ---
 
-# 📄 License
+# 📄 Project Purpose
 
-This project is developed for educational and internship purposes.
+This project was developed as an AI-powered smart parking solution for educational, internship, and research purposes focusing on intelligent parking optimization and predictive analytics.
+
+---
+
+# 📜 License
+
+This project is intended for educational and internship purposes only.
