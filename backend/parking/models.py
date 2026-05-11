@@ -14,6 +14,7 @@ class ParkingLot(models.Model):
         from .models import Booking   # safe import
         booked = Booking.objects.filter(parking_lot=self).count()
         return self.total_slots - booked
+    
 
     def __str__(self):
         return f"{self.name} ({self.location})"
